@@ -8,7 +8,7 @@ class MessageOthers extends StatelessWidget {
   // Test message
   final messages = [
     "Hello World",
-    "This is a 2 lines long fsijfffffff",
+    "This is a 2 lines long message",
     "This is a very long message that divides the message into 3 lines"
   ];
 
