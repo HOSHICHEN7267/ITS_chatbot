@@ -9,9 +9,9 @@ class MessageOthers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: Container(
-        height: 100,
+        height: 90,
         color: Theme.of(context).colorScheme.tertiary,
         // child: Row(
         //   mainAxisAlignment: MainAxisAlignment.start,

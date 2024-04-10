@@ -24,6 +24,13 @@ class _ChatPageState extends State<ChatPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            const SizedBox(
+              height: 15.0,
+            ),
+            MessageOthers(name: "Antony", message: "Hello World"),
+            MessageOthers(name: "Antony", message: "Hello World"),
+            MessageOthers(name: "Antony", message: "Hello World"),
+            MessageOthers(name: "Antony", message: "Hello World"),
             MessageOthers(name: "Antony", message: "Hello World")
           ],
         ),
