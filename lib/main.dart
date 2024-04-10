@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.white, primary: Colors.white),
+            seedColor: Colors.white,
+            primary: Colors.white,
+            secondary: Colors.grey,
+            tertiary: const Color.fromARGB(255, 147, 230, 150)),
         useMaterial3: true,
       ),
       home: const ChatPage(title: 'Receiver AAA'),
