@@ -1,3 +1,4 @@
+import 'package:chat_app/components/message_others.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
@@ -19,10 +20,12 @@ class _ChatPageState extends State<ChatPage> {
         centerTitle: true,
         shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[],
+          children: <Widget>[
+            MessageOthers(name: "Antony", message: "Hello World")
+          ],
         ),
       ),
     );
