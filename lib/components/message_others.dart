@@ -6,7 +6,11 @@ class MessageOthers extends StatelessWidget {
   final String message;
 
   // Test message
-  final messages = ["Hello World"];
+  final messages = [
+    "Hello World",
+    "This is a 2 lines long fsijfffffff",
+    "This is a very long message that divides the message into 3 lines"
+  ];
 
   MessageOthers({required this.name, required this.message});
 
@@ -33,18 +37,15 @@ class MessageOthers extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(15.0),
                 constraints: const BoxConstraints(
-                  maxWidth: 300,
+                  maxWidth: 250,
                 ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
                   borderRadius: const BorderRadius.all(
                     Radius.circular(15.0),
                   ),
                 ),
-                child: Text(messages[0],
+                child: Text(messages[1],
                     style:
                         const TextStyle(color: Colors.black, fontSize: 20.0)),
               ),
