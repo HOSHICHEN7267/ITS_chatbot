@@ -1,5 +1,4 @@
-import 'package:chat_app/components/message_others.dart';
-import 'package:chat_app/components/message_self.dart';
+import 'package:chat_app/components/message_box.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
@@ -40,11 +39,11 @@ class _ChatPageState extends State<ChatPage> {
             SizedBox(
               height: screenWidth * 0.036,
             ),
-            MessageOthers(message: messages[0], time: "15:20"),
-            MessageSelf(message: messages[1], time: "15:20"),
-            MessageOthers(message: messages[2], time: "15:20"),
-            MessageSelf(message: messages[0], time: "15:20"),
-            MessageOthers(message: messages[1], time: "15:20")
+            MessageBox(isSelf: false, message: messages[0], time: "15:20"),
+            MessageBox(isSelf: true, message: messages[1], time: "15:20"),
+            MessageBox(isSelf: false, message: messages[2], time: "15:20"),
+            MessageBox(isSelf: true, message: messages[0], time: "15:20"),
+            MessageBox(isSelf: false, message: messages[1], time: "15:20")
           ],
         ),
       ),
