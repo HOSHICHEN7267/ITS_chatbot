@@ -104,6 +104,5 @@ class MessageBox extends StatelessWidget {
                 ),
               ]));
     }
-    return Container();
   }
 }
