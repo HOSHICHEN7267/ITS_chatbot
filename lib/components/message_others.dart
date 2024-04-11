@@ -15,8 +15,12 @@ class MessageOthers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
+
     return Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(screenWidth * 0.036),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
           const Column(
@@ -34,9 +38,9 @@ class MessageOthers extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.all(15.0),
-                constraints: const BoxConstraints(
-                  maxWidth: 250,
+                padding: EdgeInsets.all(screenWidth * 0.036),
+                constraints: BoxConstraints(
+                  maxWidth: screenWidth * 0.606,
                 ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,

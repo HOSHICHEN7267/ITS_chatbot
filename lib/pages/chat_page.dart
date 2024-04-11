@@ -13,6 +13,10 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -24,8 +28,8 @@ class _ChatPageState extends State<ChatPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const SizedBox(
-              height: 15.0,
+            SizedBox(
+              height: screenWidth * 0.036,
             ),
             MessageOthers(name: "Antony", message: "Hello World"),
             MessageOthers(name: "Antony", message: "Hello World"),
