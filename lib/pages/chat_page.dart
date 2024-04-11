@@ -11,6 +11,14 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+
+  // Test message
+  final messages = [
+    "Hello World",
+    "This is a 2 lines long message",
+    "This is a very long message that divides the message into 3 lines"
+  ];
+
   @override
   Widget build(BuildContext context) {
 
@@ -31,11 +39,11 @@ class _ChatPageState extends State<ChatPage> {
             SizedBox(
               height: screenWidth * 0.036,
             ),
-            MessageOthers(name: "Antony", message: "Hello World"),
-            MessageOthers(name: "Antony", message: "Hello World"),
-            MessageOthers(name: "Antony", message: "Hello World"),
-            MessageOthers(name: "Antony", message: "Hello World"),
-            MessageOthers(name: "Antony", message: "Hello World")
+            MessageOthers(message: messages[0], time: "15:20"),
+            MessageOthers(message: messages[1], time: "15:20"),
+            MessageOthers(message: messages[2], time: "15:20"),
+            MessageOthers(message: messages[0], time: "15:20"),
+            MessageOthers(message: messages[1], time: "15:20")
           ],
         ),
       ),

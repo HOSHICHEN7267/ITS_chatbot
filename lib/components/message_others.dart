@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MessageOthers extends StatelessWidget {
-  final String name;
   final String message;
+  final String time;
 
-  // Test message
-  final messages = [
-    "Hello World",
-    "This is a 2 lines long message",
-    "This is a very long message that divides the message into 3 lines"
-  ];
-
-  MessageOthers({super.key, required this.name, required this.message});
+  const MessageOthers({super.key, required this.message, required this.time});
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +41,17 @@ class MessageOthers extends StatelessWidget {
                             Radius.circular(15.0),
                           ),
                         ),
-                        child: Text(messages[1],
+                        child: Text(message,
                             style: const TextStyle(
                                 color: Colors.black, fontSize: 20.0)),
                       ),
                     ],
                   ),
                   const SizedBox(width: 3.5,),
-                  const Text("time",
+                  Text(time,
                       textAlign: TextAlign.end,
-                      style: TextStyle(
-                          fontSize: 15.0, fontWeight: FontWeight.w100)),
+                      style: const TextStyle(
+                          fontSize: 14.0, fontWeight: FontWeight.w200)),
                 ],
               ),
             ]));
