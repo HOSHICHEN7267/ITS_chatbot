@@ -1,4 +1,5 @@
 import 'package:chat_app/components/message_others.dart';
+import 'package:chat_app/components/message_self.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
@@ -40,9 +41,9 @@ class _ChatPageState extends State<ChatPage> {
               height: screenWidth * 0.036,
             ),
             MessageOthers(message: messages[0], time: "15:20"),
-            MessageOthers(message: messages[1], time: "15:20"),
+            MessageSelf(message: messages[1], time: "15:20"),
             MessageOthers(message: messages[2], time: "15:20"),
-            MessageOthers(message: messages[0], time: "15:20"),
+            MessageSelf(message: messages[0], time: "15:20"),
             MessageOthers(message: messages[1], time: "15:20")
           ],
         ),

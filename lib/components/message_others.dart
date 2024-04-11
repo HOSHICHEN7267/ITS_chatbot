@@ -22,6 +22,9 @@ class MessageOthers extends StatelessWidget {
                 color: Colors.black,
                 size: screenWidth * 0.145,
               ),
+              SizedBox(
+                width: screenWidth * 0.012,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -47,7 +50,9 @@ class MessageOthers extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 3.5,),
+                  const SizedBox(
+                    width: 3.5,
+                  ),
                   Text(time,
                       textAlign: TextAlign.end,
                       style: const TextStyle(
