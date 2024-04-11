@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MessageOthers extends StatelessWidget {
   final String name;
@@ -12,7 +11,7 @@ class MessageOthers extends StatelessWidget {
     "This is a very long message that divides the message into 3 lines"
   ];
 
-  MessageOthers({required this.name, required this.message});
+  MessageOthers({super.key, required this.name, required this.message});
 
   @override
   Widget build(BuildContext context) {
