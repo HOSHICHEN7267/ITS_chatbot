@@ -85,7 +85,7 @@ class _ChatPageState extends State<ChatPage> {
                         decoration: const InputDecoration(
                             hintText: "Input message here",
                             hintStyle: TextStyle(
-                                color: Color.fromARGB(255, 219, 219, 219),
+                                color: Color.fromARGB(255, 173, 173, 173),
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.normal),
                             border: InputBorder.none),
