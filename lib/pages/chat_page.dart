@@ -1,6 +1,5 @@
 import 'package:chat_app/components/message_box.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Message {
   bool isSelf;
@@ -33,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    // double screenHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -60,9 +59,9 @@ class _ChatPageState extends State<ChatPage> {
               child: Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: screenWidth * 0.036,
-                    horizontal: screenWidth * 0.024),
+                    horizontal: screenHeight * 0.010),
                 child: Container(
-                  height: screenWidth * 0.121,
+                  height: screenHeight * 0.055,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6),
