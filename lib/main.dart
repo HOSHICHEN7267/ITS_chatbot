@@ -11,17 +11,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.white,
-            primary: Colors.white,
-            secondary: const Color.fromARGB(255, 231, 230, 230),
-            tertiary: const Color.fromARGB(255, 147, 230, 150)),
-        useMaterial3: true,
+    return Listener(
+      onPointerUp: (_) {
+        final FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          currentFocus.focusedChild?.unfocus();
+        }
+      },
+      child: MaterialApp(
+        title: 'Chat APP',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.white,
+              primary: Colors.white,
+              secondary: const Color.fromARGB(255, 231, 230, 230),
+              tertiary: const Color.fromARGB(255, 147, 230, 150)),
+          useMaterial3: true,
+        ),
+        home: const ChatPage(title: 'Receiver AAA'),
       ),
-      home: const ChatPage(title: 'Receiver AAA'),
     );
   }
 }
