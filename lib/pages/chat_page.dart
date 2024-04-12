@@ -21,7 +21,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   // Test message
 
-  // List<Message> messages = [];
+  final TextEditingController inputController = TextEditingController();
 
   final messages = [
     "Hello World",
@@ -77,12 +77,17 @@ class _ChatPageState extends State<ChatPage> {
                       ),
                       Expanded(
                           child: TextField(
+                        controller: inputController,
+                        keyboardType: TextInputType.text,
                         textAlign: TextAlign.left,
-                        decoration: InputDecoration(
+                        textAlignVertical: TextAlignVertical.center,
+                        style: const TextStyle(fontSize: 20.0),
+                        decoration: const InputDecoration(
                             hintText: "Input message here",
                             hintStyle: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 18.0),
+                                color: Color.fromARGB(255, 219, 219, 219),
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.normal),
                             border: InputBorder.none),
                       )),
                       IconButton(
