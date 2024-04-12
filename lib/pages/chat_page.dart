@@ -81,7 +81,10 @@ class _ChatPageState extends State<ChatPage> {
                         keyboardType: TextInputType.text,
                         textAlign: TextAlign.left,
                         textAlignVertical: TextAlignVertical.center,
-                        style: const TextStyle(fontSize: 20.0),
+                        style: const TextStyle(fontSize: 22.0, height: 1),
+                        cursorColor: Colors.black,
+                        cursorWidth: 2.5,
+                        // cursorHeight: 25.0,
                         decoration: const InputDecoration(
                             hintText: "Input message here",
                             hintStyle: TextStyle(
