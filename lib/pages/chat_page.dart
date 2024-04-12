@@ -1,5 +1,6 @@
 import 'package:chat_app/components/message_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Message {
   bool isSelf;
@@ -53,6 +54,21 @@ class _ChatPageState extends State<ChatPage> {
                       message: messages[1],
                       time: "13:55");
                 }),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: screenWidth * 0.036, horizontal: screenWidth * 0.024),
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(color: Theme.of(context).colorScheme.secondary, width: 3.0)
+                  ),
+
+                ),
+              ),
+            )
           ],
         ));
   }
