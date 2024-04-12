@@ -46,7 +46,8 @@ class _ChatPageState extends State<ChatPage> {
           children: <Widget>[
             ListView.builder(
                 itemCount: 20,
-                padding: EdgeInsets.symmetric(vertical: screenWidth * 0.036),
+                padding: EdgeInsets.only(
+                    top: screenHeight * 0.016, bottom: screenHeight * 0.085),
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return MessageBox(
@@ -54,6 +55,14 @@ class _ChatPageState extends State<ChatPage> {
                       message: messages[1],
                       time: "13:55");
                 }),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: screenWidth,
+                height: screenHeight * 0.07,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
