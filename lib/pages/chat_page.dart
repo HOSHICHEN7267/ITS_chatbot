@@ -36,6 +36,7 @@ class _ChatPageState extends State<ChatPage> {
     // double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(widget.title),
@@ -57,15 +58,17 @@ class _ChatPageState extends State<ChatPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenWidth * 0.036, horizontal: screenWidth * 0.024),
+                padding: EdgeInsets.symmetric(
+                    vertical: screenWidth * 0.036,
+                    horizontal: screenWidth * 0.024),
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: Theme.of(context).colorScheme.secondary, width: 3.0)
-                  ),
-
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.secondary,
+                          width: 3.5)),
                 ),
               ),
             )
