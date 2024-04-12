@@ -62,13 +62,38 @@ class _ChatPageState extends State<ChatPage> {
                     vertical: screenWidth * 0.036,
                     horizontal: screenWidth * 0.024),
                 child: Container(
-                  height: 50,
+                  height: screenWidth * 0.121,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: const Color.fromARGB(255, 219, 219, 219),
                           width: 3.5)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        width: screenWidth * 0.024,
+                      ),
+                      Expanded(
+                          child: TextField(
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                            hintText: "Input message here",
+                            hintStyle: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontSize: 18.0),
+                            border: InputBorder.none),
+                      )),
+                      IconButton(
+                        icon: const Icon(Icons.send),
+                        iconSize: 25.0,
+                        color: const Color.fromARGB(255, 138, 138, 138),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
                 ),
               ),
             )
