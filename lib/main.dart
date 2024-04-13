@@ -1,4 +1,5 @@
 import 'package:chat_app/pages/chat_page.dart';
+import 'package:chat_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
               tertiary: const Color.fromARGB(255, 147, 230, 150)),
           useMaterial3: true,
         ),
-        home: const ChatPage(title: 'Receiver AAA'),
+        home: const LoginPage(
+          title: "Login",
+        ),
+        // home: const ChatPage(title: 'User name'),
       ),
     );
   }
