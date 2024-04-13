@@ -23,11 +23,13 @@ class _ChatPageState extends State<ChatPage> {
 
   final TextEditingController inputController = TextEditingController();
 
-  final messages = [
-    "Hello World",
-    "This is a 2 lines long message",
-    "This is a very long message that divides the message into 3 lines"
-  ];
+  // final messages = [
+  //   "Hello World",
+  //   "This is a 2 lines long message",
+  //   "This is a very long message that divides the message into 3 lines"
+  // ];
+
+  List<Message> messageList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +47,15 @@ class _ChatPageState extends State<ChatPage> {
         body: Stack(
           children: <Widget>[
             ListView.builder(
-                itemCount: 20,
+                itemCount: messageList.length,
                 padding: EdgeInsets.only(
                     top: screenHeight * 0.016, bottom: screenHeight * 0.085),
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return MessageBox(
-                      isSelf: index % 2 == 1 ? true : false,
-                      message: messages[1],
-                      time: "13:55");
+                      isSelf: messageList[index].isSelf,
+                      message: messageList[index].text,
+                      time: messageList[index].time);
                 }),
             Align(
               alignment: Alignment.bottomCenter,
@@ -105,7 +107,13 @@ class _ChatPageState extends State<ChatPage> {
                         icon: const Icon(Icons.send),
                         iconSize: 25.0,
                         color: const Color.fromARGB(255, 138, 138, 138),
-                        onPressed: () {},
+                        onPressed: () {
+                          DateTime nowTime = DateTime.now().toLocal();
+                          String nowTimeStr =
+                              "${nowTime.hour}:${nowTime.minute}";
+                          sendMessage(true, nowTimeStr, inputController.text);
+                          inputController.clear();
+                        },
                       )
                     ],
                   ),
@@ -114,5 +122,13 @@ class _ChatPageState extends State<ChatPage> {
             )
           ],
         ));
+  }
+
+  void sendMessage(bool isSelf, String time, String text) {
+    Message newMessage = Message(isSelf, time, text);
+
+    setState(() {
+      messageList.add(newMessage);
+    });
   }
 }
