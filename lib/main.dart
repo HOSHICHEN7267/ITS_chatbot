@@ -31,9 +31,7 @@ class MyApp extends StatelessWidget {
               tertiary: const Color.fromARGB(255, 147, 230, 150)),
           useMaterial3: true,
         ),
-        home: const RegisterPage(
-          title: "Register",
-        ),
+        home: const LoginPage(),
       ),
     );
   }

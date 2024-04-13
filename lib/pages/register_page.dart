@@ -1,10 +1,9 @@
 import 'package:chat_app/components/form_textfield.dart';
+import 'package:chat_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key, required this.title});
-
-  final String title;
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -145,7 +144,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(30.0)),
                     backgroundColor: Theme.of(context).colorScheme.tertiary,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const LoginPage()));
+                  },
                   child: Text(
                     "Login",
                     style: TextStyle(
