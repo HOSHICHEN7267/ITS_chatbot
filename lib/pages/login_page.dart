@@ -1,5 +1,5 @@
+import 'package:chat_app/components/form_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
@@ -11,6 +11,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailTextfieldController =
+      TextEditingController();
+  final TextEditingController passwordTextfieldController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -45,37 +50,33 @@ class _LoginPageState extends State<LoginPage> {
                   height: screenHeight * 0.05,
                   decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(7.5),
                       border: Border.all(
                           color: const Color.fromARGB(255, 216, 216, 216),
                           width: 2.0)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: screenWidth * 0.024,
-                      ),
-                      const Expanded(
-                          child: TextField(
-                        // controller: inputController,
-                        keyboardType: TextInputType.text,
-                        textAlign: TextAlign.left,
-                        textAlignVertical: TextAlignVertical.center,
-                        style: TextStyle(fontSize: 18.0, height: 1.2),
-                        cursorColor: Colors.black,
-                        cursorWidth: 2.5,
-                        decoration: InputDecoration(
-                            hintText: "Email",
-                            hintStyle: TextStyle(
-                                color: Color.fromARGB(255, 134, 134, 134),
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.normal),
-                            border: InputBorder.none),
-                      ))
-                    ],
+                  child: FormTextfield(
+                    textfieldController: emailTextfieldController,
+                    hintText: "Email",
+                    isPassword: false,
                   )),
               // Password field
-
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              Container(
+                  width: screenWidth * 0.65,
+                  height: screenHeight * 0.05,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(7.5),
+                      border: Border.all(
+                          color: const Color.fromARGB(255, 216, 216, 216),
+                          width: 2.0)),
+                  child: FormTextfield(
+                    textfieldController: passwordTextfieldController,
+                    hintText: "Password",
+                    isPassword: true,
+                  )),
               // Login button
 
               // Don't have an account? Signup
