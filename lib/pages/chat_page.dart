@@ -23,13 +23,8 @@ class _ChatPageState extends State<ChatPage> {
 
   final TextEditingController inputController = TextEditingController();
 
-  // final messages = [
-  //   "Hello World",
-  //   "This is a 2 lines long message",
-  //   "This is a very long message that divides the message into 3 lines"
-  // ];
-
   List<Message> messageList = [];
+  bool isInputSelf = true;
 
   @override
   Widget build(BuildContext context) {
@@ -63,63 +58,62 @@ class _ChatPageState extends State<ChatPage> {
                 width: screenWidth,
                 height: screenHeight * 0.07,
                 color: Theme.of(context).colorScheme.primary,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 0,
+                        bottom: screenWidth * 0.036,
+                        left: screenHeight * 0.010,
+                        right: screenHeight * 0.010),
+                    child: Container(
+                      height: screenHeight * 0.055,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 219, 219, 219),
+                              width: 3.5)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            width: screenWidth * 0.024,
+                          ),
+                          Expanded(
+                              child: TextField(
+                            controller: inputController,
+                            keyboardType: TextInputType.text,
+                            textAlign: TextAlign.left,
+                            textAlignVertical: TextAlignVertical.center,
+                            style: const TextStyle(fontSize: 22.0, height: 1),
+                            cursorColor: Colors.black,
+                            cursorWidth: 2.5,
+                            decoration: const InputDecoration(
+                                hintText: "Input message here",
+                                hintStyle: TextStyle(
+                                    color: Color.fromARGB(255, 173, 173, 173),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.normal),
+                                border: InputBorder.none),
+                          )),
+                          IconButton(
+                            icon: const Icon(Icons.send),
+                            iconSize: 25.0,
+                            color: const Color.fromARGB(255, 138, 138, 138),
+                            onPressed: () {
+                              DateTime nowTime = DateTime.now().toLocal();
+                              String nowTimeStr =
+                                  "${nowTime.hour}:${nowTime.minute}";
+                              sendMessage(
+                                  true, nowTimeStr, inputController.text);
+                              inputController.clear();
+                            },
+                          )
+                        ],
+                      ),
+                    )),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: screenWidth * 0.036,
-                    horizontal: screenHeight * 0.010),
-                child: Container(
-                  height: screenHeight * 0.055,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 219, 219, 219),
-                          width: 3.5)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        width: screenWidth * 0.024,
-                      ),
-                      Expanded(
-                          child: TextField(
-                        controller: inputController,
-                        keyboardType: TextInputType.text,
-                        textAlign: TextAlign.left,
-                        textAlignVertical: TextAlignVertical.center,
-                        style: const TextStyle(fontSize: 22.0, height: 1),
-                        cursorColor: Colors.black,
-                        cursorWidth: 2.5,
-                        decoration: const InputDecoration(
-                            hintText: "Input message here",
-                            hintStyle: TextStyle(
-                                color: Color.fromARGB(255, 173, 173, 173),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.normal),
-                            border: InputBorder.none),
-                      )),
-                      IconButton(
-                        icon: const Icon(Icons.send),
-                        iconSize: 25.0,
-                        color: const Color.fromARGB(255, 138, 138, 138),
-                        onPressed: () {
-                          DateTime nowTime = DateTime.now().toLocal();
-                          String nowTimeStr =
-                              "${nowTime.hour}:${nowTime.minute}";
-                          sendMessage(true, nowTimeStr, inputController.text);
-                          inputController.clear();
-                        },
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            )
           ],
         ));
   }
@@ -132,3 +126,66 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 }
+
+// Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: <Widget>[
+//                       IconButton(
+//                         icon: Icon(
+//                           Icons.account_circle,
+//                           color: isInputSelf ? Colors.grey : Colors.black,
+//                         ),
+//                         iconSize: 25.0,
+//                         color: const Color.fromARGB(255, 138, 138, 138),
+//                         onPressed: () {},
+//                       ),
+//                       Container(
+//                         height: screenHeight * 0.055,
+//                         decoration: BoxDecoration(
+//                             color: Colors.white,
+//                             borderRadius: BorderRadius.circular(6),
+//                             border: Border.all(
+//                                 color: const Color.fromARGB(255, 219, 219, 219),
+//                                 width: 3.5)),
+//                         child: Row(
+//                           mainAxisAlignment: MainAxisAlignment.start,
+//                           crossAxisAlignment: CrossAxisAlignment.center,
+//                           children: <Widget>[
+//                             SizedBox(
+//                               width: screenWidth * 0.024,
+//                             ),
+//                             Expanded(
+//                                 child: TextField(
+//                               controller: inputController,
+//                               keyboardType: TextInputType.text,
+//                               textAlign: TextAlign.left,
+//                               textAlignVertical: TextAlignVertical.center,
+//                               style: const TextStyle(fontSize: 22.0, height: 1),
+//                               cursorColor: Colors.black,
+//                               cursorWidth: 2.5,
+//                               decoration: const InputDecoration(
+//                                   hintText: "Input message here",
+//                                   hintStyle: TextStyle(
+//                                       color: Color.fromARGB(255, 173, 173, 173),
+//                                       fontSize: 20.0,
+//                                       fontWeight: FontWeight.normal),
+//                                   border: InputBorder.none),
+//                             )),
+//                             IconButton(
+//                               icon: const Icon(Icons.send),
+//                               iconSize: 25.0,
+//                               color: const Color.fromARGB(255, 138, 138, 138),
+//                               onPressed: () {
+//                                 DateTime nowTime = DateTime.now().toLocal();
+//                                 String nowTimeStr =
+//                                     "${nowTime.hour}:${nowTime.minute}";
+//                                 sendMessage(
+//                                     true, nowTimeStr, inputController.text);
+//                                 inputController.clear();
+//                               },
+//                             )
+//                           ],
+//                         ),
+//                       ),
+//                     ],
+//                   )
