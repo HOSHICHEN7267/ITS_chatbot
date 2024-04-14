@@ -27,14 +27,32 @@ class _LoginPageState extends State<LoginPage> {
         });
 
     // User login
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailTextfieldController.text,
-        password: passwordTextfieldController.text);
-
-    // Pop loading circle
-    if (context.mounted) {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailTextfieldController.text,
+          password: passwordTextfieldController.text);
+      // Pop loading circle
+      if (context.mounted) {
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
+
+      debugPrint('----Exception: ${e.code} ----');
+      if (e.code == 'invalid-credential') {
+        wrongCredentialSnackBar();
+      }
     }
+  }
+
+  // Wrong email message
+  void wrongCredentialSnackBar() {
+    const snackBar = SnackBar(
+      content: Text('OOPS! Invalid Email or Password'),
+      backgroundColor: Colors.red,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
