@@ -10,11 +10,11 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController usernameTextfieldController =
-      TextEditingController();
   final TextEditingController emailTextfieldController =
       TextEditingController();
   final TextEditingController passwordTextfieldController =
+      TextEditingController();
+  final TextEditingController confirmPasswordTextfieldController =
       TextEditingController();
 
   @override
@@ -59,23 +59,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: const Color.fromARGB(255, 216, 216, 216),
                             width: 2.0)),
                     child: FormTextfield(
-                      textfieldController: usernameTextfieldController,
-                      hintText: "User Name",
-                      isPassword: false,
-                    )),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                Container(
-                    width: screenWidth * 0.65,
-                    height: screenHeight * 0.05,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(7.5),
-                        border: Border.all(
-                            color: const Color.fromARGB(255, 216, 216, 216),
-                            width: 2.0)),
-                    child: FormTextfield(
                       textfieldController: emailTextfieldController,
                       hintText: "Email",
                       isPassword: false,
@@ -95,6 +78,23 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: FormTextfield(
                       textfieldController: passwordTextfieldController,
                       hintText: "Password",
+                      isPassword: true,
+                    )),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                Container(
+                    width: screenWidth * 0.65,
+                    height: screenHeight * 0.05,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(7.5),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 216, 216, 216),
+                            width: 2.0)),
+                    child: FormTextfield(
+                      textfieldController: confirmPasswordTextfieldController,
+                      hintText: "Confirm Password",
                       isPassword: true,
                     )),
                 SizedBox(
