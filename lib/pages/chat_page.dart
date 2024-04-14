@@ -1,4 +1,5 @@
 import 'package:chat_app/components/message_box.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Message {
@@ -10,21 +11,23 @@ class Message {
 }
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key, required this.title});
-
-  final String title;
+  const ChatPage({super.key});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
-  // Test message
-
   final TextEditingController inputController = TextEditingController();
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   List<Message> messageList = [];
   bool isInputSelf = true;
+
+  void userLogout() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +38,12 @@ class _ChatPageState extends State<ChatPage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(widget.title),
+          title: Text(user.email!),
           centerTitle: true,
           shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
+          actions: [
+            IconButton(onPressed: userLogout, icon: const Icon(Icons.logout)),
+          ],
         ),
         body: Stack(
           children: <Widget>[

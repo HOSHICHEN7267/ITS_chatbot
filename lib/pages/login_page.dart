@@ -17,9 +17,24 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController();
 
   void userLogin() async {
+    // Show loading circle
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+
+    // User login
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailTextfieldController.text,
         password: passwordTextfieldController.text);
+
+    // Pop loading circle
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
   }
 
   @override
