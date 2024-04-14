@@ -1,5 +1,6 @@
 import 'package:chat_app/components/form_textfield.dart';
 import 'package:chat_app/pages/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -16,6 +17,73 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
   final TextEditingController confirmPasswordTextfieldController =
       TextEditingController();
+
+  void userRegister() async {
+    // Show loading circle
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+
+    // User register
+    try {
+      if (passwordTextfieldController.text ==
+          confirmPasswordTextfieldController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailTextfieldController.text,
+            password: passwordTextfieldController.text);
+      } else {
+        errorSnackBar('Passwords are not the same. Try again!');
+      }
+
+      // Pop loading circle
+      if (context.mounted) {
+        Navigator.pop(context);
+        successDialog();
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      errorSnackBar(e.code);
+    }
+  }
+
+  void errorSnackBar(String text) {
+    final snackBar = SnackBar(
+      content: Text(text),
+      backgroundColor: Colors.red,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void successDialog() {
+    final alertDialog = AlertDialog(
+      title: const Text('Welcome! :)'),
+      content: const Text('Register successful!'),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            child: const Text(
+              "OK",
+              style: TextStyle(color: Colors.blue),
+            )),
+      ],
+      elevation: 24.0,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+    );
+
+    showDialog(
+      context: context,
+      builder: (_) => alertDialog,
+      barrierDismissible: false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         side: BorderSide(
                             width: 2.0,
                             color: Theme.of(context).colorScheme.tertiary)),
-                    onPressed: () {},
+                    onPressed: userRegister,
                     child: const Text(
                       "Register",
                       style: TextStyle(

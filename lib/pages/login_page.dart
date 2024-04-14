@@ -38,17 +38,17 @@ class _LoginPageState extends State<LoginPage> {
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
 
-      debugPrint('----Exception: ${e.code} ----');
       if (e.code == 'invalid-credential') {
-        wrongCredentialSnackBar();
+        errorSnackBar('OOPS! Invalid Email or Password');
+      } else {
+        errorSnackBar(e.code);
       }
     }
   }
 
-  // Wrong email message
-  void wrongCredentialSnackBar() {
-    const snackBar = SnackBar(
-      content: Text('OOPS! Invalid Email or Password'),
+  void errorSnackBar(String text) {
+    final snackBar = SnackBar(
+      content: Text(text),
       backgroundColor: Colors.red,
     );
 
