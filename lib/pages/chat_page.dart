@@ -102,11 +102,11 @@ class _ChatPageState extends State<ChatPage> {
                               controller: inputController,
                               keyboardType: TextInputType.text,
                               textAlign: TextAlign.left,
-                              textAlignVertical: TextAlignVertical.center,
                               style: const TextStyle(fontSize: 22.0, height: 1),
                               cursorColor: Colors.black,
                               cursorWidth: 2.5,
                               decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.all(0.0),
                                   hintText: "Input message here",
                                   hintStyle: TextStyle(
                                       color: Color.fromARGB(255, 173, 173, 173),

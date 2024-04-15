@@ -27,11 +27,11 @@ class FormTextfield extends StatelessWidget {
           keyboardType: TextInputType.text,
           obscureText: isPassword ? true : false,
           textAlign: TextAlign.left,
-          textAlignVertical: TextAlignVertical.center,
           style: const TextStyle(fontSize: 18.0, height: 1.2),
           cursorColor: Colors.black,
           cursorWidth: 2.5,
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(0.0),
               hintText: hintText,
               hintStyle: const TextStyle(
                   color: Color.fromARGB(255, 134, 134, 134),
