@@ -1,5 +1,6 @@
 import 'package:chat_app/components/form_textfield.dart';
 import 'package:chat_app/pages/register_page.dart';
+import 'package:chat_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -130,7 +131,9 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(30.0)),
                       backgroundColor: Theme.of(context).colorScheme.tertiary,
                     ),
-                    onPressed: userLogin,
+                    onPressed: () {
+                      userLogin();
+                    },
                     child: Text(
                       "Login",
                       style: TextStyle(
@@ -182,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(30.0)),
                         backgroundColor: Theme.of(context).colorScheme.tertiary,
                       ),
-                      onPressed: () {},
+                      onPressed: () => AuthService().signInWithGoogle(),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
