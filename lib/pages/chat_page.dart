@@ -1,6 +1,7 @@
 import 'package:chat_app/components/message_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Message {
   bool isSelf;
@@ -25,8 +26,9 @@ class _ChatPageState extends State<ChatPage> {
   List<Message> messageList = [];
   bool isInputSelf = true;
 
-  void userLogout() {
-    FirebaseAuth.instance.signOut();
+  void userLogout() async {
+    await FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
   }
 
   @override
@@ -106,7 +108,7 @@ class _ChatPageState extends State<ChatPage> {
                               cursorColor: Colors.black,
                               cursorWidth: 2.5,
                               decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(0.0),
+                                  contentPadding: EdgeInsets.all(0.0),
                                   hintText: "Input message here",
                                   hintStyle: TextStyle(
                                       color: Color.fromARGB(255, 173, 173, 173),
