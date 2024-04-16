@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -10,7 +11,7 @@ class ChatListPage extends StatefulWidget {
 }
 
 class _ChatListPageState extends State<ChatListPage> {
-  // Current user instance of Firebase
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = FirebaseAuth.instance.currentUser!;
 
   final friendList = [
@@ -27,7 +28,7 @@ class _ChatListPageState extends State<ChatListPage> {
   ];
 
   void userLogout() async {
-    await FirebaseAuth.instance.signOut();
+    await _auth.signOut();
     await GoogleSignIn().signOut();
   }
 
@@ -72,19 +73,55 @@ class _ChatListPageState extends State<ChatListPage> {
           ),
         ],
       ),
-      body: ListView.builder(
-          itemCount: friendList.length,
-          padding: EdgeInsets.all(screenWidth * 0.026),
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              leading: Icon(Icons.account_circle, size: screenWidth * 0.104,),
-              title: Text(friendList[index], style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenWidth * 0.042),),
-              subtitle: Text("This is our latest message", style: TextStyle(color: Colors.grey, fontSize: screenWidth * 0.036),),
-              trailing: Icon(Icons.navigate_next, size: screenWidth * 0.063,),
-              onTap: (){},
+      body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('users').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Text("Error");
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text("Loading...");
+            }
+
+            return ListView(
+              children: snapshot.data!.docs
+                  .map<Widget>((doc) =>
+                      _buildFriendListItem(doc, screenWidth, screenHeight))
+                  .toList(),
             );
           }),
     );
+  }
+
+  Widget _buildFriendListItem(
+      DocumentSnapshot document, double screenWidth, double screenHeight) {
+    Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+
+    // Display all users except current user
+    if (user.email != data['email']) {
+      return ListTile(
+        leading: Icon(
+          Icons.account_circle,
+          size: screenWidth * 0.104,
+        ),
+        title: Text(
+          data['name'],
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: screenWidth * 0.042),
+        ),
+        subtitle: Text(
+          "This is our latest message",
+          style: TextStyle(color: Colors.grey, fontSize: screenWidth * 0.036),
+        ),
+        trailing: Icon(
+          Icons.navigate_next,
+          size: screenWidth * 0.063,
+        ),
+        onTap: () {},
+      );
+    } else {
+      return Container();
+    }
   }
 }
