@@ -44,9 +44,9 @@ class _RegisterPageState extends State<RegisterPage> {
               password: passwordTextfieldController.text);
 
       // Create a new document for the user
-      _firestore.collection('users').doc(userCredential.user!.uid).set({
+      await _firestore.collection('users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
-        'name': userNameTextfieldController,
+        'name': userNameTextfieldController.text,
         'email': emailTextfieldController.text,
       });
 

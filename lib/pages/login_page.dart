@@ -36,17 +36,17 @@ class _LoginPageState extends State<LoginPage> {
 
     // User login
     try {
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
-              email: emailTextfieldController.text,
-              password: passwordTextfieldController.text);
+      // UserCredential userCredential =
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: emailTextfieldController.text,
+          password: passwordTextfieldController.text);
 
-      // Create a new document if the user doesn't already exist
-      _firestore.collection('users').doc(userCredential.user!.uid).set({
-        'uid': userCredential.user!.uid,
-        'name': emailTextfieldController.text,  // Set the unknown user name to his/her email
-        'email': emailTextfieldController.text,
-      }, SetOptions(merge: true));
+      // // Create a new document if the user doesn't already exist
+      // _firestore.collection('users').doc(userCredential.user!.uid).set({
+      //   'uid': userCredential.user!.uid,
+      //   'name': emailTextfieldController.text,  // Set the unknown user name to his/her email
+      //   'email': emailTextfieldController.text,
+      // }, SetOptions(merge: true));
       // Pop loading circle
       if (context.mounted) {
         Navigator.pop(context);
