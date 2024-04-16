@@ -44,7 +44,11 @@ class _ChatPageState extends State<ChatPage> {
           centerTitle: true,
           shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
           actions: [
-            IconButton(onPressed: userLogout, icon: const Icon(Icons.logout)),
+            IconButton(
+              onPressed: userLogout,
+              icon: const Icon(Icons.logout),
+              iconSize: screenWidth * 0.054,
+            ),
           ],
         ),
         body: Stack(
@@ -74,7 +78,7 @@ class _ChatPageState extends State<ChatPage> {
                         icon: const Icon(
                           Icons.account_circle,
                         ),
-                        iconSize: 40.0,
+                        iconSize: screenWidth * 0.089,
                         color: isInputSelf ? Colors.grey : Colors.black,
                         onPressed: () {
                           setState(() {
@@ -104,21 +108,23 @@ class _ChatPageState extends State<ChatPage> {
                               controller: inputController,
                               keyboardType: TextInputType.text,
                               textAlign: TextAlign.left,
-                              style: const TextStyle(fontSize: 22.0, height: 1),
+                              style: TextStyle(
+                                  fontSize: screenWidth * 0.049, height: 1),
                               cursorColor: Colors.black,
                               cursorWidth: 2.5,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.all(0.0),
+                              decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.all(0.0),
                                   hintText: "Input message here",
                                   hintStyle: TextStyle(
-                                      color: Color.fromARGB(255, 173, 173, 173),
-                                      fontSize: 20.0,
+                                      color: const Color.fromARGB(
+                                          255, 173, 173, 173),
+                                      fontSize: screenWidth * 0.045,
                                       fontWeight: FontWeight.normal),
                                   border: InputBorder.none),
                             )),
                             IconButton(
                               icon: const Icon(Icons.send),
-                              iconSize: 25.0,
+                              iconSize: screenWidth * 0.056,
                               color: const Color.fromARGB(255, 138, 138, 138),
                               onPressed: () {
                                 DateTime nowTime = DateTime.now().toLocal();
