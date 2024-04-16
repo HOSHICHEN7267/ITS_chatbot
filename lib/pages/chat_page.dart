@@ -40,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(user.email!),
+          title: Text(user.email!, style: TextStyle(fontSize: screenWidth * 0.047),),
           centerTitle: true,
           shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
           actions: [
