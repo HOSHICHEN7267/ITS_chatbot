@@ -1,6 +1,7 @@
 import 'package:chat_app/components/form_textfield.dart';
 import 'package:chat_app/pages/register_page.dart';
 import 'package:chat_app/services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordTextfieldController =
       TextEditingController();
 
+  // instance of auth
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  // instance of firestore
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   void userLogin() async {
     // Show loading circle
     showDialog(
@@ -29,9 +36,17 @@ class _LoginPageState extends State<LoginPage> {
 
     // User login
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailTextfieldController.text,
-          password: passwordTextfieldController.text);
+      UserCredential userCredential =
+          await _firebaseAuth.signInWithEmailAndPassword(
+              email: emailTextfieldController.text,
+              password: passwordTextfieldController.text);
+
+      // Create a new document if the user doesn't already exist
+      _firestore.collection('users').doc(userCredential.user!.uid).set({
+        'uid': userCredential.user!.uid,
+        'name': emailTextfieldController.text,  // Set the unknown user name to his/her email
+        'email': emailTextfieldController.text,
+      }, SetOptions(merge: true));
       // Pop loading circle
       if (context.mounted) {
         Navigator.pop(context);

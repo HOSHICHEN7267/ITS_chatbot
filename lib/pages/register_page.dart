@@ -12,7 +12,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController userNamePasswordTextfieldController =
+  final TextEditingController userNameTextfieldController =
       TextEditingController();
   final TextEditingController emailTextfieldController =
       TextEditingController();
@@ -38,9 +38,17 @@ class _RegisterPageState extends State<RegisterPage> {
     // User register
     try {
       // Create a new user by email and password
-      await _firebaseAuth.createUserWithEmailAndPassword(
-            email: emailTextfieldController.text,
-            password: passwordTextfieldController.text);      
+      UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+              email: emailTextfieldController.text,
+              password: passwordTextfieldController.text);
+
+      // Create a new document for the user
+      _firestore.collection('users').doc(userCredential.user!.uid).set({
+        'uid': userCredential.user!.uid,
+        'name': userNameTextfieldController,
+        'email': emailTextfieldController.text,
+      });
 
       // Pop loading circle
       if (context.mounted) {
@@ -132,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: const Color.fromARGB(255, 216, 216, 216),
                             width: 2.0)),
                     child: FormTextfield(
-                      textfieldController: userNamePasswordTextfieldController,
+                      textfieldController: userNameTextfieldController,
                       hintText: "User Name",
                       isPassword: false,
                     )),
