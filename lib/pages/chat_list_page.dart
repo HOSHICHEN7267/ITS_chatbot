@@ -40,7 +40,7 @@ class _ChatListPageState extends State<ChatListPage> {
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         scrolledUnderElevation: 0.0,
-        toolbarHeight: 120,
+        toolbarHeight: screenHeight * 0.149,
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Padding(
           padding: EdgeInsets.only(left: screenWidth * 0.052),
@@ -63,26 +63,26 @@ class _ChatListPageState extends State<ChatListPage> {
             ],
           ),
         ),
-        // shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
         actions: [
           IconButton(
             onPressed: userLogout,
             icon: const Icon(Icons.logout),
             iconSize: screenWidth * 0.07,
-            padding: EdgeInsets.only(right: screenWidth * 0.052),
+            padding: EdgeInsets.all(screenWidth * 0.052),
           ),
         ],
       ),
       body: ListView.builder(
           itemCount: friendList.length,
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(screenWidth * 0.026),
           physics: const BouncingScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text(friendList[index]),
-              subtitle: const Text("This is our latest message"),
-              trailing: Icon(Icons.navigate_next),
+              leading: Icon(Icons.account_circle, size: screenWidth * 0.104,),
+              title: Text(friendList[index], style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenWidth * 0.042),),
+              subtitle: Text("This is our latest message", style: TextStyle(color: Colors.grey, fontSize: screenWidth * 0.036),),
+              trailing: Icon(Icons.navigate_next, size: screenWidth * 0.063,),
+              onTap: (){},
             );
           }),
     );
