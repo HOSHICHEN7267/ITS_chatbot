@@ -1,5 +1,6 @@
 import 'package:chat_app/components/form_textfield.dart';
 import 'package:chat_app/pages/login_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +12,18 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController userNamePasswordTextfieldController =
+      TextEditingController();
   final TextEditingController emailTextfieldController =
       TextEditingController();
   final TextEditingController passwordTextfieldController =
       TextEditingController();
-  final TextEditingController confirmPasswordTextfieldController =
-      TextEditingController();
+
+  // instance of auth
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  // instance of firestore
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   void userRegister() async {
     // Show loading circle
@@ -30,14 +37,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
     // User register
     try {
-      if (passwordTextfieldController.text ==
-          confirmPasswordTextfieldController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      // Create a new user by email and password
+      await _firebaseAuth.createUserWithEmailAndPassword(
             email: emailTextfieldController.text,
-            password: passwordTextfieldController.text);
-      } else {
-        errorSnackBar('Passwords are not the same. Try again!');
-      }
+            password: passwordTextfieldController.text);      
 
       // Pop loading circle
       if (context.mounted) {
@@ -129,6 +132,23 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: const Color.fromARGB(255, 216, 216, 216),
                             width: 2.0)),
                     child: FormTextfield(
+                      textfieldController: userNamePasswordTextfieldController,
+                      hintText: "User Name",
+                      isPassword: false,
+                    )),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                Container(
+                    width: screenWidth * 0.65,
+                    height: screenHeight * 0.05,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(7.5),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 216, 216, 216),
+                            width: 2.0)),
+                    child: FormTextfield(
                       textfieldController: emailTextfieldController,
                       hintText: "Email",
                       isPassword: false,
@@ -148,23 +168,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: FormTextfield(
                       textfieldController: passwordTextfieldController,
                       hintText: "Password",
-                      isPassword: true,
-                    )),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                Container(
-                    width: screenWidth * 0.65,
-                    height: screenHeight * 0.05,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(7.5),
-                        border: Border.all(
-                            color: const Color.fromARGB(255, 216, 216, 216),
-                            width: 2.0)),
-                    child: FormTextfield(
-                      textfieldController: confirmPasswordTextfieldController,
-                      hintText: "Confirm Password",
                       isPassword: true,
                     )),
                 SizedBox(
