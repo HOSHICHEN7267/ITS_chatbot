@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/chat_list_page.dart';
 import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +15,7 @@ class AuthPage extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               // user is logged in
-              return const ChatPage();
+              return const ChatListPage();
             } else {
               // user is NOT logged in
               return const LoginPage();
