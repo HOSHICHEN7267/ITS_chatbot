@@ -39,6 +39,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
+          scrolledUnderElevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(user.email!, style: TextStyle(fontSize: screenWidth * 0.047),),
           centerTitle: true,
