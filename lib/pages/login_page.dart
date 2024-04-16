@@ -76,17 +76,19 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Text(
+                Text(
                   "Login",
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.067,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: screenHeight * 0.015),
-                const Text(
+                Text(
                   "Welcome Back :)",
                   style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: screenWidth * 0.036,
                       fontWeight: FontWeight.normal,
-                      color: Color.fromARGB(255, 134, 134, 134)),
+                      color: const Color.fromARGB(255, 134, 134, 134)),
                 ),
                 SizedBox(height: screenHeight * 0.035),
                 Container(
@@ -138,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       "Login",
                       style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: screenWidth * 0.040,
                           color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
@@ -162,11 +164,11 @@ class _LoginPageState extends State<LoginPage> {
                           MaterialPageRoute(
                               builder: (_) => const RegisterPage()));
                     },
-                    child: const Text(
+                    child: Text(
                       "Register",
                       style: TextStyle(
-                          fontSize: 18.0,
-                          color: Color.fromARGB(255, 134, 134, 134)),
+                          fontSize: screenWidth * 0.040,
+                          color: const Color.fromARGB(255, 134, 134, 134)),
                     ),
                   ),
                 ),
@@ -192,6 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: <Widget>[
                           Image.asset(
                             'assets/GoogleIcon.png',
+                            scale: screenWidth / 448,
                           ),
                           SizedBox(
                             width: screenWidth * 0.01,
@@ -199,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                           Text(
                             "Sign in with Google",
                             style: TextStyle(
-                                fontSize: 18.0,
+                                fontSize: screenWidth * 0.040,
                                 color: Theme.of(context).colorScheme.primary),
                           ),
                         ],
