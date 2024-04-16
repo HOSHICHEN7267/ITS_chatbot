@@ -14,7 +14,6 @@ class MessageBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    // double screenHeight = MediaQuery.of(context).size.height;
 
     if (isSelf) {
       return Padding(
@@ -25,8 +24,9 @@ class MessageBox extends StatelessWidget {
             children: <Widget>[
               Text(time,
                   textAlign: TextAlign.end,
-                  style: const TextStyle(
-                      fontSize: 14.0, fontWeight: FontWeight.w200)),
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.031,
+                      fontWeight: FontWeight.w200)),
               SizedBox(
                 width: screenWidth * 0.012,
               ),
@@ -46,8 +46,9 @@ class MessageBox extends StatelessWidget {
                       ),
                     ),
                     child: Text(message,
-                        style: const TextStyle(
-                            color: Colors.black, fontSize: 20.0)),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: screenWidth * 0.045)),
                   ),
                 ],
               ),
@@ -88,18 +89,20 @@ class MessageBox extends StatelessWidget {
                             ),
                           ),
                           child: Text(message,
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 20.0)),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: screenWidth * 0.045)),
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      width: 3.5,
+                    SizedBox(
+                      width: screenWidth * 0.008,
                     ),
                     Text(time,
                         textAlign: TextAlign.end,
-                        style: const TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w200)),
+                        style: TextStyle(
+                            fontSize: screenWidth * 0.031,
+                            fontWeight: FontWeight.w200)),
                   ],
                 ),
               ]));
