@@ -60,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    debugPrint("width: $screenWidth, height: $screenHeight");
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.tertiary,
