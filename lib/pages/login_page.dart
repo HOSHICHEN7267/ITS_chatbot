@@ -41,14 +41,7 @@ class _LoginPageState extends State<LoginPage> {
           email: emailTextfieldController.text,
           password: passwordTextfieldController.text);
 
-      // // Create a new document if the user doesn't already exist
-      // _firestore.collection('users').doc(userCredential.user!.uid).set({
-      //   'uid': userCredential.user!.uid,
-      //   'name': emailTextfieldController.text,  // Set the unknown user name to his/her email
-      //   'email': emailTextfieldController.text,
-      // }, SetOptions(merge: true));
-      // Pop loading circle
-      if (context.mounted) {
+      if (mounted) {
         Navigator.pop(context);
       }
     } on FirebaseAuthException catch (e) {
