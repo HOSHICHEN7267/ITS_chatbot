@@ -45,7 +45,9 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pop(context);
       }
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
+      if (mounted) {
+        Navigator.pop(context);
+      }
 
       if (e.code == 'invalid-credential') {
         errorSnackBar('OOPS! Invalid Email or Password');

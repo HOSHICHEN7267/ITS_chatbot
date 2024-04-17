@@ -86,6 +86,7 @@ class _ChatListPageState extends State<ChatListPage> {
             }
 
             return ListView(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.035),
               children: snapshot.data!.docs
                   .map<Widget>((doc) =>
                       _buildFriendListItem(doc, screenWidth, screenHeight))
