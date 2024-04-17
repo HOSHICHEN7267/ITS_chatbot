@@ -28,6 +28,8 @@ class _ChatPageState extends State<ChatPage> {
 
   final user = FirebaseAuth.instance.currentUser!;
 
+  late Stream<QuerySnapshot<Object?>> streamData;
+
   bool isInputSelf = true; // to delete
 
   void userLogout() async {
@@ -39,6 +41,13 @@ class _ChatPageState extends State<ChatPage> {
     if (inputController.text.isNotEmpty) {
       await _chatService.sendMessage(widget.receiverId, inputController.text);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    streamData =
+        _chatService.getMessages(widget.receiverId, _auth.currentUser!.uid);
   }
 
   @override
@@ -108,8 +117,10 @@ class _ChatPageState extends State<ChatPage> {
                           iconSize: screenWidth * 0.056,
                           color: const Color.fromARGB(255, 138, 138, 138),
                           onPressed: () {
-                            sendMessage();
-                            inputController.clear();
+                            setState(() {
+                              sendMessage();
+                              inputController.clear();
+                            });
                           },
                         )
                       ],
@@ -122,8 +133,7 @@ class _ChatPageState extends State<ChatPage> {
 
   Widget _buildMessageList(double screenHeight) {
     return StreamBuilder(
-        stream:
-            _chatService.getMessages(widget.receiverId, _auth.currentUser!.uid),
+        stream: streamData,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(

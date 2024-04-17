@@ -1,7 +1,6 @@
 import 'package:chat_app/components/form_textfield.dart';
 import 'package:chat_app/pages/register_page.dart';
 import 'package:chat_app/services/auth_service.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    debugPrint("width: $screenWidth, height: $screenHeight");
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.tertiary,
