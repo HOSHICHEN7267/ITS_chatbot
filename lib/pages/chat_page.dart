@@ -95,8 +95,10 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                         Expanded(
                             child: TextField(
+                          minLines: 1,
+                          maxLines: 6,
                           controller: inputController,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.multiline,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               fontSize: screenWidth * 0.049, height: 1),
