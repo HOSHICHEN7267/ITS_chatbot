@@ -103,22 +103,23 @@ class _ChatListPageState extends State<ChatListPage> {
     // Display all users except current user
     if (user.email != data['email']) {
       return ListTile(
+        visualDensity: const VisualDensity(vertical: 3),
         leading: Icon(
           Icons.account_circle,
-          size: screenWidth * 0.104,
+          size: screenWidth * 0.13,
         ),
         title: Text(
           data['name'],
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: screenWidth * 0.042),
+              fontWeight: FontWeight.normal, fontSize: screenWidth * 0.052),
         ),
-        subtitle: Text(
-          "This is our latest message",
-          style: TextStyle(color: Colors.grey, fontSize: screenWidth * 0.036),
-        ),
+        // subtitle: Text(
+        //   "This is our latest message",
+        //   style: TextStyle(color: Colors.grey, fontSize: screenWidth * 0.036),
+        // ),
         trailing: Icon(
           Icons.navigate_next,
-          size: screenWidth * 0.063,
+          size: screenWidth * 0.075,
         ),
         onTap: () {
           Navigator.push(
