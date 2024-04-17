@@ -21,9 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   // instance of auth
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  // instance of firestore
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   void userLogin() async {
     // Show loading circle
     showDialog(
