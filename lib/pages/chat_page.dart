@@ -53,13 +53,6 @@ class _ChatPageState extends State<ChatPage> {
           ),
           centerTitle: true,
           shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
-          actions: [
-            IconButton(
-              onPressed: userLogout,
-              icon: const Icon(Icons.logout),
-              iconSize: screenWidth * 0.054,
-            ),
-          ],
         ),
         body: Stack(
           children: <Widget>[
