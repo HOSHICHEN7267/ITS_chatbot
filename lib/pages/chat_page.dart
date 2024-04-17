@@ -64,70 +64,52 @@ class _ChatPageState extends State<ChatPage> {
                   height: screenHeight * 0.07,
                   color: Theme.of(context).colorScheme.primary,
                   alignment: Alignment.topCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.account_circle,
+                  child: Container(
+                    height: screenHeight * 0.055,
+                    width: screenWidth * 0.9,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 219, 219, 219),
+                            width: 3.5)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          width: screenWidth * 0.024,
                         ),
-                        iconSize: screenWidth * 0.089,
-                        color: isInputSelf ? Colors.grey : Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            isInputSelf = !isInputSelf;
-                          });
-                        },
-                      ),
-                      SizedBox(width: screenWidth * 0.01),
-                      Container(
-                        height: screenHeight * 0.055,
-                        width: screenWidth * 0.8,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                color: const Color.fromARGB(255, 219, 219, 219),
-                                width: 3.5)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              width: screenWidth * 0.024,
-                            ),
-                            Expanded(
-                                child: TextField(
-                              controller: inputController,
-                              keyboardType: TextInputType.text,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: screenWidth * 0.049, height: 1),
-                              cursorColor: Colors.black,
-                              cursorWidth: 2.5,
-                              decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.all(0.0),
-                                  hintText: "Input message here",
-                                  hintStyle: TextStyle(
-                                      color: const Color.fromARGB(
-                                          255, 173, 173, 173),
-                                      fontSize: screenWidth * 0.045,
-                                      fontWeight: FontWeight.normal),
-                                  border: InputBorder.none),
-                            )),
-                            IconButton(
-                              icon: const Icon(Icons.send),
-                              iconSize: screenWidth * 0.056,
-                              color: const Color.fromARGB(255, 138, 138, 138),
-                              onPressed: () {
-                                sendMessage();
-                                inputController.clear();
-                              },
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                        Expanded(
+                            child: TextField(
+                          controller: inputController,
+                          keyboardType: TextInputType.text,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.049, height: 1),
+                          cursorColor: Colors.black,
+                          cursorWidth: 2.5,
+                          decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(0.0),
+                              hintText: "Input message here",
+                              hintStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 173, 173, 173),
+                                  fontSize: screenWidth * 0.045,
+                                  fontWeight: FontWeight.normal),
+                              border: InputBorder.none),
+                        )),
+                        IconButton(
+                          icon: const Icon(Icons.send),
+                          iconSize: screenWidth * 0.056,
+                          color: const Color.fromARGB(255, 138, 138, 138),
+                          onPressed: () {
+                            sendMessage();
+                            inputController.clear();
+                          },
+                        )
+                      ],
+                    ),
                   )),
             ),
           ],
