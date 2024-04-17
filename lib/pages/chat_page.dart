@@ -1,18 +1,17 @@
 import 'package:chat_app/components/message_box.dart';
+import 'package:chat_app/services/chat_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-class Message {
-  bool isSelf;
-  String time;
-  String text;
-
-  Message(this.isSelf, this.time, this.text);
-}
+import 'package:intl/intl.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+  final String receiverEmail;
+  final String receiverId;
+
+  const ChatPage(
+      {super.key, required this.receiverEmail, required this.receiverId});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -20,15 +19,22 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController inputController = TextEditingController();
+  final ChatService _chatService = ChatService();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final user = FirebaseAuth.instance.currentUser!;
 
-  List<Message> messageList = [];
-  bool isInputSelf = true;
+  bool isInputSelf = true; // to delete
 
   void userLogout() async {
-    await FirebaseAuth.instance.signOut();
+    await _auth.signOut();
     await GoogleSignIn().signOut();
+  }
+
+  void sendMessage() async {
+    if (inputController.text.isNotEmpty) {
+      await _chatService.sendMessage(widget.receiverId, inputController.text);
+    }
   }
 
   @override
@@ -41,7 +47,10 @@ class _ChatPageState extends State<ChatPage> {
         appBar: AppBar(
           scrolledUnderElevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(user.email!, style: TextStyle(fontSize: screenWidth * 0.047),),
+          title: Text(
+            user.email!,
+            style: TextStyle(fontSize: screenWidth * 0.047),
+          ),
           centerTitle: true,
           shape: const Border(bottom: BorderSide(color: Colors.grey, width: 3)),
           actions: [
@@ -54,17 +63,7 @@ class _ChatPageState extends State<ChatPage> {
         ),
         body: Stack(
           children: <Widget>[
-            ListView.builder(
-                itemCount: messageList.length,
-                padding: EdgeInsets.only(
-                    top: screenHeight * 0.016, bottom: screenHeight * 0.085),
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return MessageBox(
-                      isSelf: messageList[index].isSelf,
-                      message: messageList[index].text,
-                      time: messageList[index].time);
-                }),
+            _buildMessageList(screenHeight),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -128,11 +127,7 @@ class _ChatPageState extends State<ChatPage> {
                               iconSize: screenWidth * 0.056,
                               color: const Color.fromARGB(255, 138, 138, 138),
                               onPressed: () {
-                                DateTime nowTime = DateTime.now().toLocal();
-                                String nowTimeStr =
-                                    "${nowTime.hour}:${nowTime.minute}";
-                                sendMessage(isInputSelf, nowTimeStr,
-                                    inputController.text);
+                                sendMessage();
                                 inputController.clear();
                               },
                             )
@@ -146,11 +141,42 @@ class _ChatPageState extends State<ChatPage> {
         ));
   }
 
-  void sendMessage(bool isSelf, String time, String text) {
-    Message newMessage = Message(isSelf, time, text);
+  Widget _buildMessageList(double screenHeight) {
+    return StreamBuilder(
+        stream:
+            _chatService.getMessages(widget.receiverId, _auth.currentUser!.uid),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          }
 
-    setState(() {
-      messageList.add(newMessage);
-    });
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: Text('Loading...'));
+          }
+
+          return ListView(
+            padding: EdgeInsets.only(
+                top: screenHeight * 0.016, bottom: screenHeight * 0.085),
+            physics: const BouncingScrollPhysics(),
+            children: snapshot.data!.docs
+                .map((document) => _buildMessageItem(document))
+                .toList(),
+          );
+        });
+  }
+
+  Widget _buildMessageItem(DocumentSnapshot document) {
+    Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+
+    bool self = (data['senderId'] == _auth.currentUser!.uid) ? true : false;
+
+    final dateTime = data['timestamp'].toDate();
+    final timeFormatter = DateFormat('HH:mm');
+    final formattedTime = timeFormatter.format(dateTime);
+
+    return MessageBox(
+        isSelf: self, message: data['message'], time: formattedTime);
   }
 }

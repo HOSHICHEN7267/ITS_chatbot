@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/chat_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,13 @@ class _ChatListPageState extends State<ChatListPage> {
           Icons.navigate_next,
           size: screenWidth * 0.063,
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ChatPage(
+                      receiverEmail: data['email'], receiverId: data['uid'])));
+        },
       );
     } else {
       return Container();
