@@ -9,9 +9,13 @@ import 'package:intl/intl.dart';
 class ChatPage extends StatefulWidget {
   final String receiverEmail;
   final String receiverId;
+  final String receiverName;
 
   const ChatPage(
-      {super.key, required this.receiverEmail, required this.receiverId});
+      {super.key,
+      required this.receiverEmail,
+      required this.receiverId,
+      required this.receiverName});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -48,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
           scrolledUnderElevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(
-            user.email!,
+            widget.receiverName,
             style: TextStyle(fontSize: screenWidth * 0.047),
           ),
           centerTitle: true,

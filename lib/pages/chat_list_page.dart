@@ -125,7 +125,10 @@ class _ChatListPageState extends State<ChatListPage> {
               context,
               MaterialPageRoute(
                   builder: (context) => ChatPage(
-                      receiverEmail: data['email'], receiverId: data['uid'])));
+                        receiverEmail: data['email'],
+                        receiverId: data['uid'],
+                        receiverName: data['name'],
+                      )));
         },
       );
     } else {
