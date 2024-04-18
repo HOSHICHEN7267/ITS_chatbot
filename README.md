@@ -5,7 +5,7 @@ A simple chat app where you can chat with your friends online.
 ## APK Download
 You can download the release version [here](app-release.apk)
 
-## Features
+## Introduction
 
 ### Login Page
 
@@ -35,7 +35,7 @@ You can download the release version [here](app-release.apk)
 - If registration successful, an alert dialog will show up to notice you
     - Click the "OK" button to go to the chat list page
 
-### Chat list page
+### Chat List Page
 
 <div style="display:inline-block">
   <img src="image/Chat_list_page.jpg" width="200">
@@ -46,3 +46,14 @@ You can download the release version [here](app-release.apk)
 - Here is your friend list, select a friend to start chatting
 - Every registered user will be on the list
 - Press the button on the top left corner to logout
+
+### Chat Page
+
+<div style="display:inline-block">
+  <img src="image/Chat_page.jpg" width="200"> <img src="image/Chat_page_with_keyboard.jpg" width="200">
+</div>
+<br/>
+<br/>
+
+- Chat with your friend in real-time
+- Press the button on the top left corner to go back to chat list page
