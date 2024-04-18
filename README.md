@@ -55,7 +55,7 @@ You can download the release version [here](app-release.apk)
 - Press the button on the top left corner to go back to chat list page
 - The messages will be stored in Firestore
 
-### Features
+## Features
 
 <div style="display:inline-block">
   <img src="image/Firebase_logo.png" width="200">
@@ -66,7 +66,7 @@ You can download the release version [here](app-release.apk)
 - Use Google Firebase to manage authentication, login, register
 - Use Google Firebase Cloud Firestore to store user info and messages
 
-### Development Phase
+## Development Phase
 - Phase 1: Construct basic elements of the App
 - Phase 2: Implement the message box in Chat page
     - Phase 2-1: The current user's message box
