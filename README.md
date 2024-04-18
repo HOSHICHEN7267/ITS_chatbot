@@ -53,6 +53,7 @@ You can download the release version [here](app-release.apk)
 
 - Chat with your friend in real-time
 - Press the button on the top left corner to go back to chat list page
+- The messages will be stored in Firestore
 
 ### Features
 
@@ -64,3 +65,16 @@ You can download the release version [here](app-release.apk)
 
 - Use Google Firebase to manage authentication, login, register
 - Use Google Firebase Cloud Firestore to store user info and messages
+
+### Development Phase
+- Phase 1: Construct basic elements of the App
+- Phase 2: Implement the message box in Chat page
+    - Phase 2-1: The current user's message box
+    - Phase 2-2: The other user's message box
+    - Phase 2-3: Organize the layout
+- Phase 3: Create the Textfield of Chat page
+- Phase 4: Implement the UI of Login page and Register page
+- Phase 5: Set up Google Firebase email/password authentication 
+- Phase 6: Set up Google Firebase "Sign in with Google" service
+- Phase 7: Implement the UI of Chat list page
+- Phase 8: Set up Google Firebase Cloud Firestore (Store the user list and chat history)
