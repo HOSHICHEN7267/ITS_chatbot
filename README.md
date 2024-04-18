@@ -2,6 +2,9 @@
 
 A simple chat app where you can chat with your friends online.
 
+## APK Download
+You can download the release version [here](app-release.apk)
+
 ## Features
 
 ### Login Page
