@@ -1,16 +1,18 @@
 # chat_app
 
-A new Flutter project.
+A simple chat app where you can chat with your friends online.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+### Login Page
+- You can simply sign in with your registered email and password
+- Also, you can sign in with your Google account
+    - If you choose to sign in with Google, you don't need to register again 
+- If an error occurs (ex: wrong email/password), a snack bar will show up to notice you
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Register Page
+- You can create a new account by enter an user name, email and password
+- If you already have a account, just press the "Login" button then it will guide you back to the Login page
+- If an error occurs (ex: email has been used), a snack bar will show up to notice you
+- If registration successful, an alert dialog will show up to notice you
+    - Click the "OK" button to go to the chat list page
