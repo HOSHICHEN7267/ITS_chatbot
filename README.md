@@ -61,7 +61,6 @@ You can download the release version [here](app-release.apk)
   <img src="image/Firebase_logo.png" width="200">
 </div>
 <br/>
-<br/>
 
 - Use Google Firebase to manage authentication, login, register
 - Use Google Firebase Cloud Firestore to store user info and messages
