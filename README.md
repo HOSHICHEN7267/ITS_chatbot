@@ -13,7 +13,6 @@ You can download the release version [here](app-release.apk)
   <img src="image/Login_page.jpg" width="200"> <img src="image/Login_page_snack_bar.jpg" width="200">
 </div>
 <br/>
-<br/>
 
 - You can simply sign in with your registered email and password
 - Also, you can sign in with your Google account
@@ -26,7 +25,6 @@ You can download the release version [here](app-release.apk)
 <div style="display:inline-block">
   <img src="image/Register_page.jpg" width="200"> <img src="image/Register_page_snack_bar.jpg" width="200"> <img src="image/Register_page_alert_dialog.jpg" width="200">
 </div>
-<br/>
 <br/>
 
 - You can create a new account by enter an user name, email and password
@@ -41,7 +39,6 @@ You can download the release version [here](app-release.apk)
   <img src="image/Chat_list_page.jpg" width="200">
 </div>
 <br/>
-<br/>
 
 - Here is your friend list, select a friend to start chatting
 - Every registered user will be on the list
@@ -52,7 +49,6 @@ You can download the release version [here](app-release.apk)
 <div style="display:inline-block">
   <img src="image/Chat_page.jpg" width="200"> <img src="image/Chat_page_with_keyboard.jpg" width="200">
 </div>
-<br/>
 <br/>
 
 - Chat with your friend in real-time
